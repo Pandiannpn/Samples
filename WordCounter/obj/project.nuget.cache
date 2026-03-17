@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "R5dLdsA/zn8=",
+  "success": true,
+  "projectFilePath": "C:\\Pandian\\GitHubCopilotTraining\\Sample .NetApp\\SampleWebApp\\WordCounter\\WordCounter.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pannpn\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.0\\microsoft.extensions.dependencyinjection.abstractions.10.0.0.nupkg.sha512",
+    "C:\\Users\\pannpn\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.0\\microsoft.extensions.logging.abstractions.10.0.0.nupkg.sha512",
+    "C:\\Users\\pannpn\\.nuget\\packages\\npgsql\\10.0.2\\npgsql.10.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

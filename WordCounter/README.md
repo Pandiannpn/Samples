@@ -1,7 +1,7 @@
 # WordCounter Project
 
 ## Description
-The WordCounter project is a simple yet efficient tool designed to count words in a given text input. It aims to provide users with quick insights into the length of their written content.
+The WordCounter project is a simple .NET console application that counts the words in a text file and can optionally save the result to PostgreSQL.
 
 ## Features
 - **Word Count**: Quickly counts the number of words in the input.
@@ -15,27 +15,35 @@ The WordCounter project is a simple yet efficient tool designed to count words i
    git clone https://github.com/Pandiannpn/Samples.git
    cd Samples/WordCounter
    ```
-2. Install dependencies
+2. Restore and run the application
    ```bash
-   pip install -r requirements.txt
+   dotnet run
    ```
-3. Run the application
+3. Optionally configure a PostgreSQL connection string before running if you want to save the word count result:
    ```bash
-   python word_counter.py
+   export WORDCOUNTER_CONNECTION_STRING="Host=localhost;Port=5432;Database=Powerhouse;Username=postgres;Password=your-password"
+   dotnet run
    ```
 
 ## Usage
-Users can enter text in the input field and click the "Count" button to get the results displayed for word count, character count, and line count.
+By default, the application reads `input.txt` from the current working directory.
+
+- To use a different file, pass the path as the first command-line argument:
+  ```bash
+  dotnet run -- ./path/to/input.txt
+  ```
+- Or set the `WORDCOUNTER_INPUT_PATH` environment variable.
+- If `WORDCOUNTER_CONNECTION_STRING` is set, the app will also save the word count to the configured PostgreSQL database.
 
 ## Project Structure
-- `word_counter.py`: Main application file.
-- `requirements.txt`: List of Python package dependencies.
+- `Program.cs`: Entry point for the console application.
+- `DBWords.cs`: PostgreSQL persistence logic for saving and retrieving word counts.
 - `README.md`: Documentation for the project.
 
 ## Dependencies
-- Python 3.x
-- Flask (for web interface)
-- Other dependencies listed in `requirements.txt`
+- .NET 10 SDK
+- PostgreSQL (optional, only if database persistence is enabled)
+- NuGet packages restored from `WordCounter.csproj`
 
 ## Contribution
 Contributions are welcome! Please open an issue or submit a pull request if you have suggestions or improvements.

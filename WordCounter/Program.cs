@@ -3,25 +3,56 @@ using System.IO;
 
 class Program
 {
+    private const string ConnectionStringEnvironmentVariable = "WORDCOUNTER_CONNECTION_STRING";
+    private const string InputPathEnvironmentVariable = "WORDCOUNTER_INPUT_PATH";
+
     static void Main(string[] args)
     {
-        string filePath = @"C:\Pandian\GitHubCopilotTraining\Sample .NetApp\SampleWebApp\WordCounter\input.txt";
-        if (File.Exists(filePath))
+        string filePath = ResolveFilePath(args);
+        if (!File.Exists(filePath))
         {
-            string text = File.ReadAllText(filePath);
-            string[] words = text.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
-            Console.WriteLine($"Number of words: {words.Length}");
-         // Update this connection string with your actual Postgres host/port/credentials
-        string connectionString = "Host=localhost;Port=5432;Database=Powerhouse;Username=postgres;Password=admin";
-
-        var repo = new WordCountRepository(connectionString);
-        repo.SaveWordCount(Path.GetFileName(filePath), words.Length);
-
-        Console.WriteLine("Saved word count to database.");   
+            Console.Error.WriteLine($"File not found: {filePath}");
+            Environment.ExitCode = 1;
+            return;
         }
-        else
+
+        string text = File.ReadAllText(filePath);
+        string[] words = text.Split(new[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+        Console.WriteLine($"Number of words: {words.Length}");
+
+        string? connectionString = Environment.GetEnvironmentVariable(ConnectionStringEnvironmentVariable);
+        if (string.IsNullOrWhiteSpace(connectionString))
         {
-            Console.WriteLine("File not found.");
+            Console.WriteLine($"Skipped database save because {ConnectionStringEnvironmentVariable} is not set.");
+            return;
         }
+
+        try
+        {
+            var repo = new WordCountRepository(connectionString);
+            repo.SaveWordCount(Path.GetFileName(filePath), words.Length);
+            Console.WriteLine("Saved word count to database.");
+        }
+        catch (InvalidOperationException ex)
+        {
+            Console.Error.WriteLine(ex.Message);
+            Environment.ExitCode = 1;
+        }
+    }
+
+    private static string ResolveFilePath(string[] args)
+    {
+        if (args.Length > 0 && !string.IsNullOrWhiteSpace(args[0]))
+        {
+            return Path.GetFullPath(args[0]);
+        }
+
+        string? configuredPath = Environment.GetEnvironmentVariable(InputPathEnvironmentVariable);
+        if (!string.IsNullOrWhiteSpace(configuredPath))
+        {
+            return Path.GetFullPath(configuredPath);
+        }
+
+        return Path.Combine(Directory.GetCurrentDirectory(), "input.txt");
     }
 }

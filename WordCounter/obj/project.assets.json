@@ -185,19 +185,19 @@
     ]
   },
   "packageFolders": {
-    "/home/runner/.nuget/packages/": {}
+    "C:\\Users\\pannpn\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/runner/work/Samples/Samples/WordCounter/WordCounter.csproj",
+      "projectUniqueName": "C:\\Pandian\\GitHubCopilotTraining\\Sample .NetApp\\SampleWebApp\\WordCounter\\WordCounter.csproj",
       "projectName": "WordCounter",
-      "projectPath": "/home/runner/work/Samples/Samples/WordCounter/WordCounter.csproj",
-      "packagesPath": "/home/runner/.nuget/packages/",
-      "outputPath": "/home/runner/work/Samples/Samples/WordCounter/obj/",
+      "projectPath": "C:\\Pandian\\GitHubCopilotTraining\\Sample .NetApp\\SampleWebApp\\WordCounter\\WordCounter.csproj",
+      "packagesPath": "C:\\Users\\pannpn\\.nuget\\packages\\",
+      "outputPath": "C:\\Pandian\\GitHubCopilotTraining\\Sample .NetApp\\SampleWebApp\\WordCounter\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/runner/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\pannpn\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -248,7 +248,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.201/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",

@@ -4,10 +4,20 @@ using System.IO;
 class Program
 {
     private const string ConnectionStringEnvironmentVariable = "WORDCOUNTER_CONNECTION_STRING";
+    private const string InputFilePathEnvironmentVariable = "WORDCOUNTER_INPUT_FILE";
 
     static void Main(string[] args)
     {
-        string filePath = @"C:\Pandian\GitHubCopilotTraining\Sample .NetApp\SampleWebApp\WordCounter\input.txt";
+        string? filePath = args.Length > 0
+            ? args[0]
+            : Environment.GetEnvironmentVariable(InputFilePathEnvironmentVariable);
+
+        if (string.IsNullOrWhiteSpace(filePath))
+        {
+            Console.WriteLine($"File path not configured. Pass a file path argument or set the {InputFilePathEnvironmentVariable} environment variable.");
+            return;
+        }
+
         if (File.Exists(filePath))
         {
             string text = File.ReadAllText(filePath);

@@ -18,13 +18,14 @@ class Program
             if (string.IsNullOrWhiteSpace(connectionString))
             {
                 Console.WriteLine($"Skipping database save. Set the {ConnectionStringEnvironmentVariable} environment variable to enable it.");
-                return;
             }
+            else
+            {
+                var repo = new WordCountRepository(connectionString);
+                repo.SaveWordCount(Path.GetFileName(filePath), words.Length);
 
-            var repo = new WordCountRepository(connectionString);
-            repo.SaveWordCount(Path.GetFileName(filePath), words.Length);
-
-            Console.WriteLine("Saved word count to database.");
+                Console.WriteLine("Saved word count to database.");
+            }
         }
         else
         {

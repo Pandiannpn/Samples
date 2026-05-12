@@ -41,7 +41,7 @@ class Program
         }
         else
         {
-            Console.WriteLine($"File not found: {filePath}");
+            Console.Error.WriteLine($"File not found: {filePath}");
         }
     }
 }

@@ -64,6 +64,6 @@ public class WordCountRepository
 public class WordCountRecord
 {
     public int Id { get; set; }
-    public string FileName { get; set; }
+    public string FileName { get; set; } = string.Empty;
     public int WordCount { get; set; }
 }
